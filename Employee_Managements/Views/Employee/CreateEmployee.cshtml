@@ -1,0 +1,28 @@
+﻿@model Employee_Managements.Models.Employee
+
+@using (Html.BeginForm("CreateEmployee", "Employee", FormMethod.Post))
+{
+    @Html.LabelFor(m => m.First_Name)
+    @Html.TextBoxFor(m => m.First_Name)
+    <span asp-validation-for="First_Name"></span>
+    <br />
+
+    @Html.LabelFor(m => m.Last_Name)
+    @Html.TextBoxFor(m => m.Last_Name)
+    <span asp-validation-for="Last_Name"></span>
+
+    <br />
+    @Html.LabelFor(m => m.DesignationName)
+    @Html.DropDownListFor(model => model.DesignationId,Model.DesignationList,"Select a Designation",new{@class="form-control"})
+    <span asp-validation-for="DesignationName"></span>
+
+    <br />
+    @Html.LabelFor(m => m.Experience)
+    @Html.TextBoxFor(m => m.Experience)
+    <br />
+
+    <input type="submit" value="submit"></input>
+   
+}
+
+
