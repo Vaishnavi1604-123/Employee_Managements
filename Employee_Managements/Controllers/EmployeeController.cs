@@ -147,6 +147,28 @@ namespace Employee_Managements.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult CreateAjax()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateAjax(string First_Name, string Last_Name, int DesignationId, int Experience)
+        {
+            _con = new SqlConnection("Data Source=VGATTU-L-5481;Initial Catalog=Employee_Management;User ID=SA;Password=Welcome2evoke@1234");
+            _con.Open();
+            using (SqlCommand command = new SqlCommand("InsertEmployee", _con))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@FirstName", First_Name);
+                command.Parameters.AddWithValue("@LastName", Last_Name);
+                command.Parameters.AddWithValue("@DesignationId", DesignationId);
+                command.Parameters.AddWithValue("@Experience", Experience);
+                int result=command.ExecuteNonQuery();
+            }
+            return View();
+        }
        
         //public IActionResult Index()
         //{
@@ -171,5 +193,5 @@ namespace Employee_Managements.Controllers
         }
         //}
     }
-}
+
 

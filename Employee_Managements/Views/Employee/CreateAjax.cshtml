@@ -1,0 +1,80 @@
+﻿@model Employee_Managements.Models.Employee
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<table class="table">
+    <tr>
+        <td><label for="Expense_Date">First_Name:</label></td>
+        <td><input type="text" class="form-control" id="FirstName"  /></td>
+    </tr>
+    <tr>
+        <td><label for="Amount">Last_Name:</label></td>
+        <td><input type="text" class="form-control" id="LastName" name="Amount" /></td>
+    </tr>
+    <tr>
+        <td><label for="CategoryId">Department_Id:</label></td>
+        <td><input type="number" class="form-control" id="DepartmentId" name="CategoryId" /></td>
+    </tr>
+    <tr>
+        <td><label for="Note">Experience</label></td>
+        <td><input type="number" class="form-control" id="Experience" name="Note" /></td>
+    </tr>
+</table>
+<button type="button" id="SaveButton" class="btn btn-primary">Save</button>
+
+@*<script>
+    function myfunction()
+    {
+        alert("Inserted Successfully");
+    }
+</script>*@
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        
+
+        $('#SaveButton').click(function () {
+            Console.log("Button Clicked");
+            debugger;
+
+            var FirstName = $('#FirstName').val();
+
+            var LastName = $('#LastName').val();
+
+            var DesignationId = $('#DesignationId').val();
+            var Experience=$('#Experience').val();
+
+            var Save = $('#Button').attr('checked');
+
+            $.ajax({
+
+                type: 'post',
+
+                contentType: "application/json; charset=utf-8",
+                process-Data:false,
+
+                url: '@Url.Action("CreateAjax","Employee")',
+
+                data: JSON.stringify({ First_Name: FirstName, Last_Name: LastName, DesignationId=DesignationId, Experience=Experience }),
+
+                success: function (response) {
+
+                    alert("Record Has been Saved in Database. Status code: " + response);
+
+                }
+
+            });
+
+        });
+
+    });
+
+</script>
+
+
+
+
+
+
